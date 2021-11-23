@@ -63,6 +63,7 @@ namespace Gamekit3D
                     Death((Damageable.DamageMessage)msg);
                     break;
                 case Message.MessageType.DAMAGED:
+                    Debug.Log(gameObject.GetComponent<GameKitVersionCharacters>().GetName());
                     ApplyDamage((Damageable.DamageMessage)msg);
                     LastedDamage = (Damageable.DamageMessage)msg;
                     Vector3 Source = LastedDamage.damageSource;

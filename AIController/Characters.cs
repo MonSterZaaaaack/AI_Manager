@@ -5,7 +5,7 @@ using System;
 using Gamekit3D;
 using Gamekit3D.Message;
 [Serializable]
-public class Characters : MonoBehaviour, IMessageReceiver
+public abstract class Characters : MonoBehaviour
 {
     public string Name;
     public int ID;
@@ -86,7 +86,14 @@ public class Characters : MonoBehaviour, IMessageReceiver
         }
         AIEvents selected = Randomize(val);
         Characters[] targets = new Characters[] { this };
-        selected.Do(targets);
+        if(selected == null)
+        {
+            return;
+        }
+        else
+        {
+            selected.Do(targets);
+        }
 
     }
     public int TestGetEvent(EventCondition con)
@@ -125,7 +132,14 @@ public class Characters : MonoBehaviour, IMessageReceiver
             }
         }
         int index = UnityEngine.Random.Range(0,randomList.Count);
-        return randomList[index];
+        if(randomList.Count == 0)
+        {
+            return null;
+        }
+        else
+        {
+            return randomList[index];
+        }
     }    
     public void Updatecharacterinfo(IList<IList<int>> newTraits)
     {
@@ -135,22 +149,6 @@ public class Characters : MonoBehaviour, IMessageReceiver
         {
             PersonalityTraits.Add(UnityEngine.Random.Range(newTraits[i][0], newTraits[i][1]));
         }
-    }
-    public void damaged()
-    {
-
-        EnemyBehavior Behaviour = gameObject.GetComponent<EnemyBehavior>();
-        //controller.WalkBackToBase();
-        int hashBeenAttacked = Animator.StringToHash("BeenAttacked");
-        Behaviour.controller.animator.SetBool(hashBeenAttacked, true);
-    }
-    public void OnReceiveMessage(Gamekit3D.Message.MessageType type, object sender, object msg)
-    {
-        string condition = type.ToString();
-        TestCondition eventcondition = new TestCondition(condition);
-        lastestMessage = (Damageable.DamageMessage)msg;
-        GetEvent(eventcondition);
-        
     }
 
 }

@@ -1347,13 +1347,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7350040781745426208}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae4265fe179b33e449b8a4377b100a53, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a849915c6cd34147aba5491a83c8c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Spiter1
+  Name: 
   ID: 0
-  ClassName: Chomper2
-  PersonalityTraits: 0600000008000000
+  ClassName: 
+  PersonalityTraits: 
 --- !u!114 &7350040781745426209
 MonoBehaviour:
   m_ObjectHideFlags: 0

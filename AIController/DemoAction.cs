@@ -25,14 +25,14 @@ public class DemoAction
     }
     public void ChomperRunAway(object Chomper)
     {
-        Characters chomper = (Characters)Chomper;
+        GameKitVersionCharacters chomper = (GameKitVersionCharacters)Chomper;
         Debug.Log(chomper.GetName() + " Choose To RunAway");
         chomper.damaged();
         return;
     }
     public void ChomperFight(object Chomper)
     {
-        Characters chomper = (Characters)Chomper;
+        GameKitVersionCharacters chomper = (GameKitVersionCharacters)Chomper;
         Debug.Log(chomper.GetName() + " Choose To Fight " + chomper.gameObject.GetComponent<EnemyBehavior>().target.name);
         chomper.gameObject.GetComponent<EnemyBehavior>().StartPursuit();
         return;

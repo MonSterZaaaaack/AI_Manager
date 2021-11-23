@@ -19,8 +19,6 @@ public class AddClass : EditorWindow
         {
             CharacterClass temp = new CharacterClass(classname, size);
             AIManager.Instance.AddClass(temp);
-            ClassManager ManagerWindow = EditorWindow.GetWindow<ClassManager>();
-            ManagerWindow.RefreshClasses();
             Close();
         }
     }

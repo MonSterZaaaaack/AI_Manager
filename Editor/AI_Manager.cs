@@ -37,16 +37,6 @@ public class AI_Manager : EditorWindow
             TraitsManager.ShowWindow();
             Close();
         }
-        if (GUILayout.Button("Simulator"))
-        {
-            SImulator.ShowWindow();
-            Close();
-        }
-
-        if (GUILayout.Button("Save"))
-        {
-            AIManager.Instance.Save();
-        }
         if (GUILayout.Button("Showpath"))
         {
             Debug.Log(Application.persistentDataPath);

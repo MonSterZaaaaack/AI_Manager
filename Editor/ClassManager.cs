@@ -79,6 +79,7 @@ public class ClassManager : EditorWindow
             RefreshClasses();
             classes = -1;
             preselection = -1;
+            AIManager.Instance.Save();
 
         }
         if (GUILayout.Button("Save changes"))
@@ -120,6 +121,7 @@ public class ClassManager : EditorWindow
             }
         }
     }
+    // Used to Show All classes available in the system.
     public void RefreshClasses()
     {
         IList<CharacterClass> classes = AIManager.Instance.GetAllClass();
@@ -136,6 +138,7 @@ public class ClassManager : EditorWindow
             }
         }
     }
+    // Use to show All information of the selected Class.
     public void EditClass()
     {
         classname = classnames[classes];
@@ -201,6 +204,7 @@ public class ClassManager : EditorWindow
     }
     public void ShowCharacters()
     {
+        
         GUILayout.BeginVertical();
         characters = GUILayout.SelectionGrid(characters, charnames, 3);
         GUILayout.BeginHorizontal();
@@ -210,7 +214,6 @@ public class ClassManager : EditorWindow
         {
             AIManager.Instance.SetNewCharInfo(selected);
             AddCharacter.ShowWindow();
-            EditClass();
         }
         GUILayout.BeginHorizontal();
 
@@ -225,6 +228,7 @@ public class ClassManager : EditorWindow
             string temp = selected.GetAllCharacters()[characters];
             selected.DeleteCharacters(temp);
             SaveChanges();
+            AIManager.Instance.Save();
             EditClass();
 
         }

@@ -41,8 +41,9 @@ public class AddCharacter : EditorWindow
                 string[] path = EditorSceneManager.GetActiveScene().path.Split(char.Parse("/"));
                 bool saveOK = EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene(), string.Join("/", path));
                 Debug.Log("Saved Scene " + (saveOK ? "OK" : "Error!"));
-                Debug.Log(selectedclass.GetName());
-                Debug.Log(temp.GetClass().GetName());
+                ClassManager Manager = EditorWindow.GetWindow<ClassManager>();
+                Manager.EditClass();
+                AIManager.Instance.Save();
                 Close();
             }
         }
