@@ -10,12 +10,13 @@ public class AIEvents
     private IList<int> TraitsFactor;
     private int Weight;
     private int ActionNumber;
+    private string ActionName;
     private DemoAction demo;
     private EventCondition condition;
     public AIEvents(string name,int size)
     {
         Name = name;
-        demo = new DemoAction();
+        demo = AIManager.Instance.GetActions();
         TraitsFactor = new List<int>();
         for(int i = 0; i < size; i++)
         {
@@ -68,6 +69,14 @@ public class AIEvents
     {
         return ActionNumber;
     }
+    public void SetActionName(string name)
+    {
+        ActionName = name;
+    }
+    public string getActionName()
+    {
+        return ActionName;
+    }
     public void SetWeight(int wei)
     {
         Weight = wei;
@@ -76,9 +85,14 @@ public class AIEvents
     {
         return demo;
     }
+    public void SetAction(DemoAction newDemo)
+    {
+        demo = newDemo;
+    }
     public void Do(Characters[] Targets)
     {
-        MethodInfo val = demo.methodslist[ActionNumber];
+        demo = AIManager.Instance.GetActions();
+        MethodInfo val = demo.AvailableMethods[ActionName];
         object[] parameters = new object[] { Targets[0] };
         val.Invoke(demo,parameters);
     }

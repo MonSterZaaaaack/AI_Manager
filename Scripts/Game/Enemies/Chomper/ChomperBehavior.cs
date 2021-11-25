@@ -58,6 +58,7 @@ namespace Gamekit3D
 
             SceneLinkedSMB<ChomperBehavior>.Initialise(m_Controller.animator, this);
             Backpos = originalPosition;
+            receiver = gameObject.GetComponent<Characters>() as IMessageReceiver;
         }
         /// <summary>
         /// Called by animation events.
@@ -106,6 +107,7 @@ namespace Gamekit3D
         {
             //we ignore height difference if the target was already seen
             List<GameObject> Enemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();
+            Enemies.Add(GameObject.FindGameObjectWithTag("Player"));
             GameObject target = playerScanner.DetectEnemy(Enemies,this.gameObject, m_Target == null);
 
             if (m_Target == null)
@@ -113,7 +115,8 @@ namespace Gamekit3D
                 //we just saw the player for the first time, pick an empty spot to target around them
                 if (target != null)
                 {
-                    m_Controller.animator.SetTrigger(hashSpotted);
+                    //m_Controller.animator.SetTrigger(hashSpotted);
+                    receiver.OnReceiveMessage(MessageType.TARGETFOUND, this, null);
                     m_Target = target;
                     TargetDistributor distributor = target.GetComponent<TargetDistributor>();
                     if (distributor != null)
@@ -238,7 +241,6 @@ namespace Gamekit3D
 
         public void OnReceiveMessage(Message.MessageType type, object sender, object msg)
         {
-            var receiver = gameObject.GetComponent<Characters>() as IMessageReceiver;
             switch (type)
             {
                 case Message.MessageType.DEAD:
@@ -260,7 +262,6 @@ namespace Gamekit3D
                             m_FollowerInstance = distributor.RegisterNewFollower();
 
                     }
-                    receiver.OnReceiveMessage(MessageType.DAMAGED, this, msg);
                     break;
                 case Message.MessageType.TARGETDEAD:
                     Debug.Log(gameObject.name + " Stop Pursing " + ((GameObject)sender).name + " Target Died");
@@ -269,6 +270,13 @@ namespace Gamekit3D
                 default:
                     break;
             }
+            receiver.OnReceiveMessage(type, this, msg);
+        }
+        public override void FoundEnemy()
+        {
+            Debug.Log("Chomper Found Enemy");
+            m_Controller.animator.SetTrigger(hashSpotted);
+
         }
 
         public void Death(Damageable.DamageMessage msg)

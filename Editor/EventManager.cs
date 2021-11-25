@@ -14,6 +14,7 @@ public class EventManager : EditorWindow
     int preselection = -1;
     string Eventname = "No Event Selected";
     string EventCondition = "No Event Selected";
+    DemoAction demo;
     AIEvents selected = null;
     IList<int> Factors = null;
     IList<AIEvents> CurrentEvents;
@@ -93,6 +94,7 @@ public class EventManager : EditorWindow
             Actionnumber = EditorGUILayout.Popup(Actionnumber, Actions);
             GUILayout.EndHorizontal();
             GUILayout.Label("Action nummber : "+ Actionnumber.ToString());
+            GUILayout.Label("Action name : " + selected.getActionName());
             // Show Traits Factors;
             IList<string> TraitNames = new List<string>(AIManager.Instance.GetPersonalities());
             for (int i = 0; i < Factors.Count; i++)
@@ -119,6 +121,7 @@ public class EventManager : EditorWindow
             {
                 string oldname = selected.GetName();
                 selected.SetActionNumber(Actionnumber);
+                selected.SetActionName(Actions[Actionnumber]);
                 selected.SetFactor(Factors);
                 selected.SetName(Eventname);
                 AIManager.Instance.ChangeEventName(oldname, Eventname);
@@ -138,15 +141,23 @@ public class EventManager : EditorWindow
         selected = CurrentEvents[Eventnumber];
         Eventname = selected.GetName();
         EventCondition = selected.getCondition().getName();
-        DemoAction demo = selected.GetAction();
-        IList<MethodInfo> methods = new List<MethodInfo>(demo.methodslist);
+        demo = AIManager.Instance.GetActions();
+        Dictionary<string, MethodInfo> methods = demo.AvailableMethods;
         Actions = new string[methods.Count];
-        for(int i = 0; i < methods.Count; i++)
+        int i = 0;
+        foreach(MethodInfo val in methods.Values)
         {
-            Actions[i] = methods[i].Name;
+            Actions[i] = val.Name;
+            i++;
         }
         Factors = selected.GetFactor();
+        string ActionName = selected.getActionName();
         Actionnumber = selected.GetActionNumber();
+        if(Actionnumber != Array.IndexOf(Actions, ActionName))
+        {
+            Actionnumber = Array.IndexOf(Actions, ActionName);
+            selected.SetActionNumber(Actionnumber);
+        }
         if(Eventnumber != preselection)
         {
             GUI.FocusControl(null);

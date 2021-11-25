@@ -21,6 +21,7 @@ public class AIManager : MonoBehaviour
     private bool newCharcreated;
     private Scene newScene;
     private static AIManager I_instance;
+    private DemoAction actions;
     public static AIManager Instance { get { return I_instance; } }
     public int gettest()
     {
@@ -56,6 +57,7 @@ public class AIManager : MonoBehaviour
                 AvailableIDs = new HashSet<int>(tempInstance.AvailableIDs);
                 CharacterSize = tempInstance.CharacterSize;
                 newCharcreated = false;
+                actions = new DemoAction();
                 fs.Close();
 
             }
@@ -74,6 +76,7 @@ public class AIManager : MonoBehaviour
                 {
                     AvailableIDs.Add(i);
                 }
+                actions = new DemoAction();
             }
         }
         else
@@ -105,6 +108,7 @@ public class AIManager : MonoBehaviour
                 AvailableIDs = new HashSet<int>(tempInstance.AvailableIDs);
                 CharacterSize = tempInstance.CharacterSize;
                 newCharcreated = false;
+                actions = new DemoAction();
                 fs.Close();
 
             }
@@ -123,9 +127,14 @@ public class AIManager : MonoBehaviour
                 {
                     AvailableIDs.Add(i);
                 }
+                actions = new DemoAction();
             }
             Debug.Log("AI_Manager Re_Initialized");
         }
+    }
+    public DemoAction GetActions()
+    {
+        return actions;
     }
     /*
      * Add a new class to the System.

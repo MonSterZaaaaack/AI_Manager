@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Gamekit3D.Message;
 using UnityEngine;
 using UnityEngine.AI;
 using System.Linq;
 #if UNITY_EDITOR
 using UnityEditor;
-using MessageType = UnityEditor.MessageType;
 #endif
 
 namespace Gamekit3D
@@ -51,6 +49,7 @@ namespace Gamekit3D
             m_Controller.animator.Play(hashIdleState, 0, Random.value);
 
             SceneLinkedSMB<SpitterBehaviour>.Initialise(m_Controller.animator, this);
+            receiver = gameObject.GetComponent<Characters>() as IMessageReceiver;
 
         }
 
@@ -206,7 +205,8 @@ namespace Gamekit3D
                 if (target != null)
                 {
                     m_Target = target;
-                    m_Controller.animator.SetBool(hashHaveEnemy, m_Target != null);
+                    //m_Controller.animator.SetBool(hashHaveEnemy, m_Target != null);
+                    receiver.OnReceiveMessage(Message.MessageType.TARGETFOUND, this, null);
                 }
             }
             else
@@ -261,6 +261,11 @@ namespace Gamekit3D
                 }
             }
         }
+        public override void FoundEnemy()
+        {
+            Debug.Log("Spitter Found Enemy");
+
+        }
         public override void StartPursuit()
         {
             CheckNeedFleeing();
@@ -312,7 +317,7 @@ namespace Gamekit3D
             {
                 EditorGUILayout.HelpBox("The scanner detection radius is smaller than the fleeing range.\n" +
                     "The spitter will never shoot at the player as it will flee past the range at which it can see the player",
-                    MessageType.Warning, true);    
+                    UnityEditor.MessageType.Warning, true);    
             }
             
             base.OnInspectorGUI();

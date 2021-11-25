@@ -20,6 +20,10 @@ namespace Gamekit3D
                 m_MonoBehaviour.StopPursuit();
                 return;
             }
+            else
+            {
+                m_MonoBehaviour.StartPursuit();
+            }
 
             Vector3 toTarget = m_MonoBehaviour.target.transform.position - m_MonoBehaviour.transform.position;
 

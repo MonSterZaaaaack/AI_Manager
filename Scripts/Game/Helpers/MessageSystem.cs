@@ -12,6 +12,7 @@ namespace Gamekit3D
             DEAD,
             RESPAWN,
             TARGETDEAD,
+            TARGETFOUND,
             //Add your user defined message type after
         }
 

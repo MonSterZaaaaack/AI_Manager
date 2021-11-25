@@ -21,7 +21,10 @@ public class GameKitVersionCharacters : Characters, IMessageReceiver
     {
         string condition = type.ToString();
         TestCondition eventcondition = new TestCondition(condition);
-        lastestMessage = (Damageable.DamageMessage)msg;
+        if(msg != null)
+        {
+            lastestMessage = (Damageable.DamageMessage)msg;
+        }
         GetEvent(eventcondition);
 
     }

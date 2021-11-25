@@ -76,7 +76,6 @@ public abstract class Characters : MonoBehaviour
         CharacterClass thisclass = AIManager.Instance.GetClass(ClassName);
         IList<AIEvents> temp = new List<AIEvents>(thisclass.GetEvents());
         IList<AIEvents> val = new List<AIEvents>();
-        EnemyBehavior test = gameObject.GetComponent<ChomperBehavior>();
         foreach(AIEvents events in temp)
         {
             if (events.ExamCondition(con))
@@ -96,6 +95,7 @@ public abstract class Characters : MonoBehaviour
         }
 
     }
+    // Used by Event Simulator
     public int TestGetEvent(EventCondition con)
     {
         IList<AIEvents> temp = new List<AIEvents>(Class.GetEvents());
