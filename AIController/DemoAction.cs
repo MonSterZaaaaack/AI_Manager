@@ -1,4 +1,5 @@
 using Gamekit3D;
+using Gamekit3D.GameCommands;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,8 +27,15 @@ public class DemoAction
             
         }
     }
-    public void AMethod()
+    public void OpenTheGate(object Chomper)
     {
+        GameKitVersionCharacters chomper = (GameKitVersionCharacters)Chomper;
+        GameObject Guard = chomper.gameObject;
+        if(Guard.GetComponent<SendOnTriggerEnter>() != null)
+        {
+            Guard.GetComponent<SendOnTriggerEnter>().Send();
+        }
+        Debug.Log("Open the Gate");
         return;
     }
     public void BMethod()

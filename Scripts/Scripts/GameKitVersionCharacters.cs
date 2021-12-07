@@ -20,6 +20,7 @@ public class GameKitVersionCharacters : Characters, IMessageReceiver
     public void OnReceiveMessage(Gamekit3D.Message.MessageType type, object sender, object msg)
     {
         string condition = type.ToString();
+        Debug.Log(condition);
         TestCondition eventcondition = new TestCondition(condition);
         if(msg != null)
         {

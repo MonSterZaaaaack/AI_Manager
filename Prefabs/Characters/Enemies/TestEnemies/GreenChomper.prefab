@@ -3416,6 +3416,8 @@ GameObject:
   - component: {fileID: 4319948034056147414}
   - component: {fileID: 4319948034056147415}
   - component: {fileID: 4319948034056147412}
+  - component: {fileID: 2358664377746333975}
+  - component: {fileID: 3481763396170788614}
   m_Layer: 23
   m_Name: GreenChomper
   m_TagString: Enemy
@@ -3552,7 +3554,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4319948034056147413}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.63598824, y: 1.1292851, z: 0.84204507}
@@ -3623,6 +3625,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arcsCount: 12
+--- !u!114 &2358664377746333975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319948034056147413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a6b9459188da24a8d2ef8a03eb1c5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    Name: 
+    sentences: []
+    Messages: 
+--- !u!114 &3481763396170788614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319948034056147413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e188162c08864fc4bfe48b8b1ba4c5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionType: 0
+  interactiveObject: {fileID: 0}
+  oneShot: 0
+  coolDown: 1
+  onSendAudio: {fileID: 0}
+  audioDelay: 0
+  layers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &4319948034094384809
 GameObject:
   m_ObjectHideFlags: 0
