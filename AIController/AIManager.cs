@@ -45,6 +45,7 @@ public class AIManager : MonoBehaviour
 
             if (File.Exists(Application.persistentDataPath + "/AIManager" + newScene.name + ".dat"))
             {
+                Debug.Log(newScene.name);
                 BinaryFormatter bf = new BinaryFormatter();
                 FileStream fs = File.Open(Application.persistentDataPath + "/AIManager" + newScene.name + ".dat", FileMode.Open);
                 ManagerData tempInstance = bf.Deserialize(fs) as ManagerData;
@@ -63,6 +64,7 @@ public class AIManager : MonoBehaviour
             }
             else
             {
+                Debug.Log("New Controller");
                 I_instance = this;
                 Classlist = new Dictionary<string, CharacterClass>();
                 Characters = new HashSet<string>();
@@ -96,6 +98,7 @@ public class AIManager : MonoBehaviour
 
             if (File.Exists(Application.persistentDataPath + "/AIManager" + newScene.name + ".dat"))
             {
+                Debug.Log(newScene.name);
                 BinaryFormatter bf = new BinaryFormatter();
                 FileStream fs = File.Open(Application.persistentDataPath + "/AIManager" + newScene.name + ".dat", FileMode.Open);
                 ManagerData tempInstance = bf.Deserialize(fs) as ManagerData;
@@ -114,6 +117,7 @@ public class AIManager : MonoBehaviour
             }
             else
             {
+                Debug.Log("New Controller");
                 I_instance = this;
                 Classlist = new Dictionary<string, CharacterClass>();
                 Characters = new HashSet<string>();
@@ -413,7 +417,7 @@ public class AIManager : MonoBehaviour
      * If the Name of event does not exist in the system or the new name already exist in the system, log error
      * Else set the new name to the event.
      */
-    public void ChangeEventName(string oldname, string newname)
+    public bool ChangeEventName(string oldname, string newname)
     {
         if (Eventnames.Contains(oldname))
         {
@@ -432,12 +436,15 @@ public class AIManager : MonoBehaviour
             else
             {
                 Debug.LogError("Change Event Name Failed.\n The new Event Name Already Exist in the system");
+                return false;
             }
         }
         else
         {
             Debug.LogError("Change Event Name Failed.\n The Name of the Event does not exist in the system");
+            return false;
         }
+        return true;
     }
     /*
      * Create a new Character by name

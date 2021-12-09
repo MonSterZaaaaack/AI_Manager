@@ -53,38 +53,18 @@ public class ClassManager : EditorWindow
         }
         GUILayout.EndVertical();
         GUILayout.BeginVertical();
-        GUILayout.Label("Class Name:");
-        ShowClassName();
-        GUILayout.Label("Characters in this class:");
-        ShowCharacters();
-        GUILayout.Label("AIEvents in this class:");
-        ShowEvents();
-        GUILayout.Label("Personality Traits Settings:");
-        ShowTraits();
-
-        GUILayout.BeginHorizontal();
-        if(GUILayout.Button("Add Class"))
+        if(classes != -1)
+        {
+            ShowClass();
+        }
+        if (GUILayout.Button("Add Class"))
         {
             AddClass.ShowWindow();
         }
-        GUILayout.EndHorizontal();
         if (GUILayout.Button("Back to Main Menu"))
         {
             AI_Manager.ShowWindow();
             Close();
-        }
-        if(GUILayout.Button("Delete Class"))
-        {
-            AIManager.Instance.DeleteClass(selectedname);
-            RefreshClasses();
-            classes = -1;
-            preselection = -1;
-            AIManager.Instance.Save();
-
-        }
-        if (GUILayout.Button("Save changes"))
-        {
-            AIManager.Instance.Save();
         }
         GUILayout.EndVertical();
         GUILayout.EndHorizontal();
@@ -108,6 +88,33 @@ public class ClassManager : EditorWindow
         ranges = new int[0,0];
         traitsnames = new string[0];
 
+    }
+    public void ShowClass()
+    {
+        GUILayout.Label("Class Name:");
+        ShowClassName();
+        GUILayout.Label("Characters in this class:");
+        ShowCharacters();
+        GUILayout.Label("AIEvents in this class:");
+        ShowEvents();
+        GUILayout.Label("Personality Traits Settings:");
+        ShowTraits();
+
+        GUILayout.BeginHorizontal();
+        GUILayout.EndHorizontal();
+        if (GUILayout.Button("Delete Class"))
+        {
+            AIManager.Instance.DeleteClass(selectedname);
+            RefreshClasses();
+            classes = -1;
+            preselection = -1;
+            AIManager.Instance.Save();
+
+        }
+        if (GUILayout.Button("Save changes"))
+        {
+            AIManager.Instance.Save();
+        }
     }
     public void CreateClasses()
     {

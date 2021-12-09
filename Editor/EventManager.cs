@@ -73,11 +73,8 @@ public class EventManager : EditorWindow
             // Show the data stored in the selected events;
             GUILayout.BeginVertical();
             GUILayout.BeginHorizontal();
+            GUILayout.Label("Event Name : ");
             Eventname = GUILayout.TextField(Eventname);
-            if(GUILayout.Button("Set Event Name"))
-            {
-                selected.SetName(Eventname);
-            }
             GUILayout.EndHorizontal();
             GUILayout.BeginHorizontal();
             GUILayout.Label("Current Condition: " + selected.getCondition().getName());
@@ -123,8 +120,13 @@ public class EventManager : EditorWindow
                 selected.SetActionNumber(Actionnumber);
                 selected.SetActionName(Actions[Actionnumber]);
                 selected.SetFactor(Factors);
-                selected.SetName(Eventname);
-                AIManager.Instance.ChangeEventName(oldname, Eventname);
+                if(oldname != Eventname)
+                {
+                    if(AIManager.Instance.ChangeEventName(oldname, Eventname))
+                    {
+                        selected.SetName(Eventname);
+                    }
+                }
                 ShowEvents();
             }
             if(GUILayout.Button("Delete Event"))

@@ -38,8 +38,9 @@ public class DemoAction
         Debug.Log("Open the Gate");
         return;
     }
-    public void BMethod()
+    public void RefusedToOpen(object Chomper)
     {
+        Debug.Log("Refused to open the Gate");
         return;
     }
     public void TestMethod1()
@@ -51,6 +52,10 @@ public class DemoAction
         return;
     }
     public void BMethod2()
+    {
+        return;
+    }
+    public void BMethod()
     {
         return;
     }
@@ -72,11 +77,13 @@ public class DemoAction
     {
         GameKitVersionCharacters chomper = (GameKitVersionCharacters)Chomper;
         chomper.gameObject.GetComponent<EnemyBehavior>().FoundEnemy();
+        Debug.Log(chomper.GetName() + " Choose To Chase ");
     }
     public void CharacterIgnoreEnemy(object Chomper)
     {
         GameKitVersionCharacters chomper = (GameKitVersionCharacters)Chomper;
         chomper.gameObject.GetComponent<EnemyBehavior>().IgnoreEnemy();
+        Debug.Log(chomper.GetName() + " Choose To Ignore ");
         return;
     }
 

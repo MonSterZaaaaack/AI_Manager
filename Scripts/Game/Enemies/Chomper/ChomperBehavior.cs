@@ -274,8 +274,12 @@ namespace Gamekit3D
         }
         public override void FoundEnemy()
         {
-            Debug.Log("Chomper Found Enemy");
             m_Controller.animator.SetTrigger(hashSpotted);
+
+        }
+        public override void IgnoreEnemy()
+        {
+            ;
 
         }
 

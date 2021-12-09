@@ -3418,6 +3418,7 @@ GameObject:
   - component: {fileID: 4319948034056147412}
   - component: {fileID: 2358664377746333975}
   - component: {fileID: 3481763396170788614}
+  - component: {fileID: -2753112239207701073}
   m_Layer: 23
   m_Name: GreenChomper
   m_TagString: Enemy
@@ -3641,6 +3642,8 @@ MonoBehaviour:
     Name: 
     sentences: []
     Messages: 
+    Receiver: {fileID: 0}
+  Enter: 0
 --- !u!114 &3481763396170788614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3662,6 +3665,19 @@ MonoBehaviour:
   layers:
     serializedVersion: 2
     m_Bits: 0
+--- !u!65 &-2753112239207701073
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319948034056147413}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4319948034094384809
 GameObject:
   m_ObjectHideFlags: 0

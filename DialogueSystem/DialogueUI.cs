@@ -31,7 +31,6 @@ public class DialogueUI : MonoBehaviour
     }
     public IEnumerator ShowDialogue(List<string> Text)
     {
-        Debug.Log("Start Couroutine");
         PlayerInput.Instance.ReleaseControl();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -50,10 +49,7 @@ public class DialogueUI : MonoBehaviour
                 textLabel.text = showText.Substring(0, stringindex);
                 yield return null;
             }
-            Debug.Log(textLabel.text);
-            Debug.Log("End Show text");
             OpenOptions(Text,listindex);
-            Debug.Log("End Show Option");
             listindex += 3;
             stringindex = 0;
             time = 0;
@@ -61,7 +57,6 @@ public class DialogueUI : MonoBehaviour
         }
         PlayerInput.Instance.GainControl();
         ClosingDialogueUI();
-        Debug.Log("End Courtine");
     }
     void OpenOptions(List<string> options,int index)
     {
