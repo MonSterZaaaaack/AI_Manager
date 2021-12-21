@@ -5,7 +5,9 @@ using UnityEngine;
 [Serializable]
 public class TestCondition : EventCondition
 {
-    // Start is called before the first frame update
+    /**
+     * A revised version of EventCondition that fits the 3D Gamekit Project
+     */
     public string name;
     public TestCondition(string condition)
     {

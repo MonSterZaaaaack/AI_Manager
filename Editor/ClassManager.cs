@@ -29,7 +29,6 @@ public class ClassManager : EditorWindow
     public ListView view;
     string classname = "Class Name";
     // Start is called before the first frame update
-    [MenuItem("Asset/ClassTest")]
     public static void ShowWindow()
     {
         var window = GetWindow<ClassManager>();

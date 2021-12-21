@@ -10,7 +10,6 @@ public class AddCharacter : EditorWindow
     Vector3 vec3 = new Vector3(0, 0, 0);
     CharacterClass classname = null;
     string objname = "";
-    [MenuItem("Asset/TestCreate")]
     public static void ShowWindow()
     {
         var window = GetWindow<AddCharacter>();
