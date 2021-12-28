@@ -11,7 +11,11 @@ public class CharacterClass
     private IList<string> CharacterList;
 
     
-    // Start is called before the first frame update
+    /*
+     * Character Class is a container for groups of characters created by AI_Behaviour controller
+     * Each Character in the should belongs to at least one(and only one for this version) of character classes
+     * The Class will define the sets of Available events and the personality trait value ranges for the Character.
+     */
     public CharacterClass(string Name, int size)
     {
         this.Name = Name;

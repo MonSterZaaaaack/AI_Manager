@@ -13,6 +13,10 @@ public class AIEvents
     private string ActionName;
     private DemoAction demo;
     private EventCondition condition;
+    /*
+     * AIEvents are defines the response of character to certain stimulus in game.
+     * Each event would have its own Condition, once the condition is meet, the event would be selected and return to the character by the Character Class.
+     */
     public AIEvents(string name,int size)
     {
         Name = name;
@@ -28,22 +32,6 @@ public class AIEvents
     public void SetCondition(EventCondition newcondition)
     {
         condition = newcondition;
-    }
-    public void test()
-    {
-        Debug.Log("TestStart");
-        MethodInfo val = null;
-        foreach(MethodInfo temp in demo.methodslist)
-        {
-            if (temp.Name.Equals("TestAction1"))
-            {
-                val = temp;
-            }
-        }
-        Debug.Log(demo.methodslist.Count);
-        val.Invoke(demo, null);
-        Debug.Log("TestEnds");
-
     }
     public void SetName(string name)
     {

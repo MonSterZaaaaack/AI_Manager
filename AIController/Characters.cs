@@ -13,6 +13,11 @@ public abstract class Characters : MonoBehaviour
     public string ClassName;
     public List<int> PersonalityTraits;
     public Damageable.DamageMessage lastestMessage;
+    /*
+     * The base class for characters in game.
+     * Contains basic properties and methods that other parts of the system need.
+     * Developers should extend this class to fit their own games before use.
+     */
     public Characters(string Name,int ID,CharacterClass Class)
     {
         this.Name = Name;
